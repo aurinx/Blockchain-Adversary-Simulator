@@ -32,10 +32,10 @@ public class SelfishMiner extends BaseMiner implements Miner {
 			this.currentHead = block;
 			this.secretBlock = block;
 		}
-		if (isMinerMe && block.getHeight() < this.secretBlock.getHeight()) {
+		if (isMinerMe && currentHead.getHeight() - 1 < this.secretBlock.getHeight()) {
 			this.secretBlock = block;
 		} else if (isMinerMe || (!isMinerMe && block.getHeight() >= this.secretBlock.getHeight())) {
-			this.secretBlock = block;
+			this.secretBlock = currentHead;
 			this.currentHead = block;
 		} else {
 			this.currentHead = this.secretBlock;
